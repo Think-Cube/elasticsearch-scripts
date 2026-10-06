@@ -1,0 +1,39 @@
+{
+  "index_patterns": ["logs-app-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "index.lifecycle.name": "logs-default",
+      "index.lifecycle.rollover_alias": "logs-app"
+    },
+    "mappings": {
+      "dynamic": "true",
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "level": {
+          "type": "keyword"
+        },
+        "message": {
+          "type": "text"
+        },
+        "service": {
+          "type": "keyword"
+        },
+        "host": {
+          "type": "keyword"
+        },
+        "trace_id": {
+          "type": "keyword"
+        }
+      }
+    }
+  },
+  "priority": 100,
+  "composed_of": [],
+  "_meta": {
+    "description": "Template for application logs with ILM"
+  }
+}
